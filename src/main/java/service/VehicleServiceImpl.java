@@ -1,9 +1,9 @@
 package service;
 
-import ConnectionDataBase.ConnectionDB;
 import entity.Vehicle;
 import repository.VehicleRepository;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class VehicleServiceImpl implements VehicleService{
@@ -21,13 +21,13 @@ public class VehicleServiceImpl implements VehicleService{
     @Override
     public void registerVehicle(String numberPlate, String typeVehicle) {
         Vehicle vehicle = new Vehicle();
+
         vehicle.setNumberPlate(numberPlate);
         vehicle.setTypeVehicle(typeVehicle);
         vehicle.setEntryTime(new Time(System.currentTimeMillis()));
 
         vehicleRepository.add(vehicle);
-        System.out.println("BERHASIL MENAMBAHKAN KENDARAAN");
-        System.out.println("Plat Nomor " + vehicle.getNumberPlate());
+        JOptionPane.showMessageDialog(null, "KENDARAAN " + vehicle.getNumberPlate() + " BERHASIL DITAMBAH", "Pesan Sukses", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void getDataVehicle(String numberPlate){

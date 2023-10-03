@@ -3,6 +3,8 @@ package view;
 import Util.InputUtil;
 import service.VehicleService;
 
+import javax.swing.*;
+
 public class VehicleView {
 
     private VehicleService vehicleService;
@@ -35,15 +37,20 @@ public class VehicleView {
 
     public void addVehicle(){
 
-        System.out.println("MENAMBAH TODOLIST");
+        System.out.println("MENAMBAH KENDARAAN");
 
-        String numberPlate = InputUtil.input("Plat Nomor (x) untuk batal");
+        while (true){
 
-        if (numberPlate.equals("x")){
+            String numberPlate = InputUtil.input("Plat Nomor (Contoh : BM 1234 AA) (x) untuk batal");
+            String regex = "^[A-Z]{2}\\s\\d{4}\\s[A-Z]{2}$";
 
-        } else {
-            String typeVehicle = InputUtil.input("Jenis Kendaraan");
-            vehicleService.registerVehicle(numberPlate, typeVehicle);
+            if (!numberPlate.matches(regex)){
+                JOptionPane.showMessageDialog(null, "Plat Nomor yang anda masukkan tidak valid"," Pesan Kesalahan", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String typeVehicle = InputUtil.input("Jenis Kendaraan (Contoh : roda dua/roda empat)");
+                vehicleService.registerVehicle(numberPlate, typeVehicle);
+                break;
+            }
         }
     }
 

@@ -183,7 +183,7 @@ public class VehicleRepositoryImpl implements VehicleRepository{
         String sql = "UPDATE kendaraan SET lama_parkir = ?, biaya_parkir = ? WHERE plat_nomor = ?";
 
         try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)) {
+            PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setLong(1, vehicle.getLongParkingTime());
             statement.setInt(2, vehicle.getParkingFee());
